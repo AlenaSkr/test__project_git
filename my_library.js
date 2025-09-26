@@ -29,6 +29,10 @@ class Library{
         }
         return newBook;
     }
+    // поиск книг
+    findBook(searchTerm){
+        return this.books.filter(book => book.title.includes(searchTerm));
+    }
 }
 const library = new Library("Тестовая библиотека");
 
@@ -37,3 +41,6 @@ library.addBook("React продвинутый", "Мария Сидорова", 2
 library.addBook("React продвинутый", "Мария Сидорова", 2024, "REACT-002", 1);
 
 console.log(library.books);
+const foundBooks = library.findBook("JavaScript");
+console.log(foundBooks.length);
+
