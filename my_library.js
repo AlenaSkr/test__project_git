@@ -31,7 +31,18 @@ class Library{
     }
     // поиск книг
     findBook(searchTerm){
-        return this.books.filter(book => book.title.includes(searchTerm));
+        let foundBooks = this.books.filter(book => book.title.includes(searchTerm));
+        if (foundBooks.length){
+            return foundBooks;
+        } else {
+            foundBooks = this.books.filter(book => book.author.includes(searchTerm));
+            if (foundBooks.length){
+            return foundBooks;
+        } else{
+            foundBooks = this.books.filter(book => book.isbn.includes(searchTerm));
+            return foundBooks;
+        }
+        }
     }
 }
 const library = new Library("Тестовая библиотека");
@@ -41,6 +52,6 @@ library.addBook("React продвинутый", "Мария Сидорова", 2
 library.addBook("React продвинутый", "Мария Сидорова", 2024, "REACT-002", 1);
 
 console.log(library.books);
-const foundBooks = library.findBook("JavaScript");
+const foundBooks = library.findBook("REACT-002");
 console.log(foundBooks.length);
 
